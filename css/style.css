@@ -519,33 +519,45 @@ header .icons a:hover {
   border-radius: 0;
 }
 .fa-shipping-fast {
-  animation: carAnamit 1.5s infinite;
+  animation: carAnimat 1.5s linear infinite both;
 }
-@keyframes carAnamit {
+@keyframes carAnimat {
   0% {
-    transform: translateX(-10px);
+    transform: translateX(20px);
+  }
+  50% {
+    transform: translateX(0px);
   }
   100% {
-    transform: translateX(10px);
+    transform: translateX(20px);
   }
 }
 .fa-undo {
-  animation: rotateAnamit 1.5s infinite;
+  animation: rotateAnimat 1.5s linear infinite both;
 }
-@keyframes rotateAnamit {
+@keyframes rotateAnimat {
   0% {
-    transform: rotate(45deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotate(-180deg);
+    transform: rotate(-1turn);
   }
 }
 .fa-headset {
-  animation: headsetAnamit 1.5s infinite;
+  animation: pulsate-bck 1.5s linear infinite both;
 }
-@keyframes headsetAnamit {
+@keyframes pulsate-bck {
   0% {
-    transform: scale(1.2);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
 @media (max-width: 991px) {
