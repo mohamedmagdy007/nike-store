@@ -458,7 +458,7 @@ header .icons p:hover {
   color: var(--black);
   font-weight: bolder;
 }
-.featured .row .content .price span {
+.featured .row .content .price span:last-child {
   font-size: 1.5rem;
   color: var(--orange);
   text-decoration: line-through;

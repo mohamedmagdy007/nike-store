@@ -7,6 +7,9 @@
     e.preventDefault();
     cart.classList.toggle("show");
   });
+  cart.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 })();
 (function () {
   const cartBtn = document.querySelectorAll(".btn-AddCart");
@@ -16,12 +19,16 @@
 
       if (e.target.parentElement.classList.contains("content")) {
         let fullPath =
-          e.target.parentElement.previousElementSibling.getAttribute("src");
+          e.target.parentElement.previousElementSibling.getAttribute("src") ||
+          e.target.parentElement.previousElementSibling.firstElementChild.getAttribute(
+            "src"
+          );
         const item = {};
         item.img = fullPath;
         let name = e.target.parentElement.firstElementChild.textContent;
         let price =
-          e.target.parentElement.children[1].firstElementChild.textContent;
+          e.target.parentElement.children[1].firstElementChild.textContent ||
+          e.target.parentElement.children[3].firstElementChild.textContent;
         let firstPrice = price.slice(1).trim();
         item.name = name;
         item.price = firstPrice;
@@ -30,7 +37,9 @@
         let html = `<div class="cart-item">
           <img src=${item.img} style="border: 2px solid #ddd;
          border-radius: 5px;
-             box-shadow: 0px 0px 2px 0px #ccc;" alt="" srcset="" width="85px">
+             box-shadow: 0px 0px 2px 0px #ccc;height: 50px;
+             width: 100px;
+             object-fit: contain;" alt=${item.img} >
             <div style="display: flex;
              flex-direction: column;">
            <span class="name-item">${item.name}</span>
@@ -51,9 +60,20 @@
         });
 
         const deleteItem = document.querySelectorAll(".fa-trash");
+        const deleteAllItem = document.querySelector(".clear_Cart");
+        const deleteAllItemInCart = document.querySelectorAll(".cart-item");
         deleteItem.forEach((btn) => {
           btn.addEventListener("click", (e) => {
+            e.stopPropagation();
             e.target.parentElement.remove();
+            showTotals();
+          });
+        });
+
+        deleteAllItem.addEventListener("click", (e) => {
+          e.stopPropagation();
+          deleteAllItemInCart.forEach((items) => {
+            items.remove();
             showTotals();
           });
         });
